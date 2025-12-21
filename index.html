@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Route Navigator</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="control-panel">
+        <h2>Smart Route Navigator</h2>
+        <p>Select points on the map to create your route.</p>
+
+        <button onclick="calculateRoute()">Find Shortest Route</button>
+        <button onclick="clearMap()" style="background-color: #d9534f;">Clear All</button>
+        <div id="status">Selected Points: 0</div>
+        <div id="points-list"></div>
+        <div id="route-info"></div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="dijkstra.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
