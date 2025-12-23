@@ -60,29 +60,21 @@ function dijkstra(graph, startNode, endNode) {
 function reconstructPath(previous, startNode, endNode) {
   const path = [];
   let curr = endNode;
+
   while (curr !== null && curr !== undefined) {
     path.push(curr);
     if (curr === startNode) break;
     curr = previous.get(curr);
   }
-  return path.reverse();
-}
 
-// Generate all permutations
-function getPermutations(arr) {
-  if (arr.length <= 1) return [arr];
-  const result = [];
-  for (let i = 0; i < arr.length; i++) {
-    const current = arr[i];
-    const remaining = arr.slice(0, i).concat(arr.slice(i + 1));
-    getPermutations(remaining).forEach(perm => result.push([current, ...perm]));
-  }
-  return result;
+  return path.reverse();
 }
 
 // Find shortest route visiting all points (Brute Force TSP)
 function optimizeRouteOrder(selectedNodes, graph) {
-  if (selectedNodes.length < 3) return selectedNodes;
+  if (selectedNodes.length < 3) {
+    return selectedNodes;
+  }
 
   const start = selectedNodes[0];
   const others = selectedNodes.slice(1);
@@ -122,4 +114,19 @@ function optimizeRouteOrder(selectedNodes, graph) {
   }
 
   return bestRoute.length > 0 ? bestRoute : selectedNodes;
+}
+
+// Generate all permutations
+function getPermutations(arr) {
+  if (arr.length <= 1) {
+    return [arr];
+  }
+  
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    const current = arr[i];
+    const remaining = arr.slice(0, i).concat(arr.slice(i + 1));
+    getPermutations(remaining).forEach(perm => result.push([current, ...perm]));
+  }
+  return result;
 }
